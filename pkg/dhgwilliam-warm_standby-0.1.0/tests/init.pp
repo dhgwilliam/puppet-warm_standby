@@ -1,0 +1,1 @@
+include warm_standby
