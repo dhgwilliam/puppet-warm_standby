@@ -27,7 +27,7 @@ define warm_standby::replicate::database (
   if $real_restore {
     exec { "remote restore of ${database}":
       path    => '/usr/bin',
-      command => "ssh ${real_identity} ${remote_user}@${remote_host} 'sudo -u ${backup_user} ${pg_bin_path}/pg_restore -c --jobs=2 -Fc ${remote_staging_area}/${database}.dump'",
+      command => "ssh ${real_identity} ${remote_user}@${remote_host} 'sudo -u ${backup_user} ${pg_bin_path}/pg_restore -c --jobs=2 -Fc -d ${database} ${remote_staging_area}/${database}.dump'",
       require => Exec["rsync ${database} to ${remote_host}"],
     }
   }
