@@ -1,4 +1,5 @@
 warm_standby
+---
 
 In theory, this backs up an entire all-in-one PE3 puppet master out of the box. There are some modifications in place to deal with open source puppet masters. replicate::folder supports rsync exceptions.
 
