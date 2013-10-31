@@ -1,9 +1,9 @@
 class warm_standby (
   $remote_host,
-  $ssh_identity = undef,
-  $databases = ['console', 'console_auth', 'pe-postgres', 'pe-puppetdb'],
+  $ssh_identity      = undef,
+  $databases         = ['console', 'console_auth', 'pe-postgres', 'pe-puppetdb'],
   $replicate_folders = true,
-  $folders = ['/etc/puppetlabs','/opt/puppet'],
+  $folders           = ['/etc/puppetlabs','/opt/puppet'],
 ) {
   include stdlib::stages
 
