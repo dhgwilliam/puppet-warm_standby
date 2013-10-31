@@ -1,15 +1,9 @@
-class warm_standby {
+class warm_standby (
+  $remote_host,
+  $databases = ['console', 'console_auth', 'pe-postgres'],
+  $folders = ['/etc/puppetlabs','/opt/puppet'],
+) {
   include stdlib::stages
-
-  $remote_host = hiera('warm_standby::remote_host')
-  $databases = hiera(
-    'warm_standby::databases',
-    ['console', 'console_auth', 'pe-postgres']
-  )
-  $folders = hiera(
-    'warm_standby::folders',
-    ['/etc/puppetlabs','/opt/puppet']
-  )
 
   package { 'rsync':
     ensure => installed,
