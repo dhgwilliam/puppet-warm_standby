@@ -1,6 +1,7 @@
 class warm_standby (
   $remote_host,
   $databases = ['console', 'console_auth', 'pe-postgres', 'pe-puppetdb'],
+  $replicate_folders = true,
   $folders = ['/etc/puppetlabs','/opt/puppet'],
 ) {
   include stdlib::stages
@@ -14,9 +15,10 @@ class warm_standby (
     require     => Package['rsync'],
   }
 
-  warm_standby::replicate::folder { $folders:
-    remote_host => $remote_host,
-    require     => Package['rsync'],
+  if $replicate_folders {
+    warm_standby::replicate::folder { $folders:
+      remote_host => $remote_host,
+      require     => Package['rsync'],
+    }
   }
-
 }
